@@ -1,0 +1,33 @@
+#####################
+Añade una nueva película al grafo por defecto (grafo Award)
+#####################
+
+PREFIX  ex4:  <http://example.org/award/>
+PREFIX  dc:   <http://purl.org/dc/elements/1.1/>
+
+INSERT DATA {
+  ex4:aw5 dc:title "Hombre en llamas" .
+  ex4:aw5 dc:date "2004-05-06" .
+  ex4:aw5 ex4:bestPicture: "Tony Scott" .
+}
+
+#####################
+Elimina el grafo 1 (uri: http://example.org/film/g1) del repositorio de award (clear graph)
+#####################
+CLEAR GRAPH <http://example.org/film/g1>
+
+
+
+#####################
+Haciendo uso de los AGREGADOS, obtener cual es el precio más caro de los libros en el grafo? (grafo Book, viene creado por defecto en el respositorio). Sacar si se puede el nombre del libro
+#####################
+PREFIX dc:<http://purl.org/dc/elements/1.1/>
+PREFIX ex2:<http://example.org/book/>
+SELECT ?title (MAX(?price) AS ?maxprice)
+WHERE { 
+    ?book ex2:price ?price .
+    ?book dc:title ?title
+}
+GROUP BY ?title
+ORDER BY DESC (?maxprice)
+LIMIT 1

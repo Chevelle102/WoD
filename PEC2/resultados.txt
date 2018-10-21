@@ -1,0 +1,28 @@
+###################
+Haciendo uso de la cláusula “SELECT”, obtener aquellas personas que tengan nombre y email (grafo Person)
+###################
+
+prefix foaf: <http://xmlns.com/foaf/0.1/>
+SELECT ?s ?x1 ?x2
+WHERE {
+	?s foaf:name ?x1.
+    ?s foaf:mbox ?x2
+}
+
+
+
+##################
+Haciendo uso de la cláusula “OPTIONAL”, obtener el nombre de las personas y si se puede su email (grafo Person)
+##################
+prefix foaf: <http://xmlns.com/foaf/0.1/>
+SELECT ?s ?x1 ?x2
+WHERE {
+	?s foaf:name ?x1.
+    OPTIONAL { ?s foaf:mbox ?x2 }
+}
+
+
+##################
+Haciendo uso de la cláusula “FILTROS”, obtener cuales son los países que tienen una población superior a 40,000 habitantes (grafo Country)
+##################
+
